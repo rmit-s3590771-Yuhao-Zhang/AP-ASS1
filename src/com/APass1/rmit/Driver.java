@@ -31,14 +31,12 @@ public class Driver {
 				if(input > 0 && input <= 6){
 					error = false;
 				}else{
-					menu();
-					System.out.println("Your input is invalid. Please input an integer between 1 to 5.");
+					System.out.println("Your input is invalid. Please input an integer between 1 to 6.");
 					error = true;
 				}
 			}
 			catch(java.util.InputMismatchException e){
-				menu();
-				System.out.println("Your input is invalid. Please input an integer between 1 to 5.");
+				System.out.println("Your input is invalid. Please input an integer between 1 to 6.");
 				sc.next();
 				error = true;
 			}
