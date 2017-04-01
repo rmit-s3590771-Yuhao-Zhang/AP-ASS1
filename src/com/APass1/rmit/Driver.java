@@ -9,7 +9,7 @@ public class Driver {
 	
 	public void runGame(){
 		menu();
-		checkInput();
+		checkInputMenu();
 	}
 	private void menu(){
 		//Create menu for game.
@@ -21,8 +21,11 @@ public class Driver {
 		System.out.println("4. Display the final result of results of all gomes");
 		System.out.println("5. Display the point of all athletes");
 		System.out.println("6. Exit");
+		System.out.println("\nEnter an option : ");
+		
 	}
-	private void checkInput(){
+	
+	private void checkInputMenu(){
 		//Check user's input if it is integer between 1 and 6.
 		do{
 			try{
@@ -32,11 +35,13 @@ public class Driver {
 					error = false;
 				}else{
 					System.out.println("Your input is invalid. Please input an integer between 1 to 6.");
+					menu();
 					error = true;
 				}
 			}
 			catch(java.util.InputMismatchException e){
 				System.out.println("Your input is invalid. Please input an integer between 1 to 6.");
+				menu();
 				sc.next();
 				error = true;
 			}
