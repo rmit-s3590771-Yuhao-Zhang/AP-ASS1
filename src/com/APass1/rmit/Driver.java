@@ -14,14 +14,11 @@ public class Driver {
 		
 		while(running){
 		menu();
-<<<<<<< Updated upstream
 		checkInputMenu(6);
 		runMenu();
 		}
-=======
 		checkMeanMenuInput();
 		runMenu();
->>>>>>> Stashed changes
 		
 	}
 	protected void menu(){
@@ -34,40 +31,33 @@ public class Driver {
 		System.out.println("4. Display the final result of results of all games");
 		System.out.println("5. Display the point of all athletes");
 		System.out.println("6. Exit");
-<<<<<<< Updated upstream
 		System.out.println("\nEnter an option : ");
 		
 	}
 	
 	private void checkInputMenu(int max){  
 		//Check user's input if it is integer between 1 and max.
-=======
 		System.out.print("Please enter an option:\b\b");
 	}
 	protected void checkMeanMenuInput(){  
 		//Check user's input if it is integer between 1 and 6.
->>>>>>> Stashed changes
 		
 			try{
 				int choice = sc.nextInt();
 				input = choice;
-<<<<<<< Updated upstream
 				if(input > 0 && input <= max){
 					error = false;
 				}else{
 					System.out.println("Your input is invalid. Please input an integer between 1 to " + max + ".");
-=======
 				if(input > 0 && input <= 6){//only 6 opinions
 					error = false;
 				}else{
 					System.out.println("Your input is invalid. Please input an integer between 1 to 6.");
 					menu();
->>>>>>> Stashed changes
 					error = true;
 				}
 			}
 			catch(java.util.InputMismatchException e){
-<<<<<<< Updated upstream
 				System.out.println("Your input is invalid. Please input an integer between 1 to " + max + ".");
 				sc.next();
 				error = true;
@@ -93,14 +83,13 @@ public class Driver {
 			}
 		return;
 	}
-=======
+
 				System.out.println("Your input is invalid. Please input an integer between 1 to 6.");
 				menu();
 				sc.next();
 				error = true;
 			}
 			while(error);
->>>>>>> Stashed changes
 	
 	}
 	protected void runMenu(){
