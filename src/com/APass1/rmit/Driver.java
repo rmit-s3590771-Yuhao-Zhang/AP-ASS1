@@ -6,17 +6,10 @@ public class Driver {
 	private int input;
 	private int secondInput;
 	private boolean error;
-	private boolean running;
 	private Scanner sc = new Scanner(System.in);
 	
 	public void runGame(){
-		running = true;
-		
-		while(running){
 		menu();
-		checkInputMenu(6);
-		runMenu();
-		}
 		checkMeanMenuInput();
 		runMenu();
 		
@@ -31,12 +24,6 @@ public class Driver {
 		System.out.println("4. Display the final result of results of all games");
 		System.out.println("5. Display the point of all athletes");
 		System.out.println("6. Exit");
-		System.out.println("\nEnter an option : ");
-		
-	}
-	
-	private void checkInputMenu(int max){  
-		//Check user's input if it is integer between 1 and max.
 		System.out.print("Please enter an option:\b\b");
 	}
 	protected void checkMeanMenuInput(){  
@@ -45,10 +32,6 @@ public class Driver {
 			try{
 				int choice = sc.nextInt();
 				input = choice;
-				if(input > 0 && input <= max){
-					error = false;
-				}else{
-					System.out.println("Your input is invalid. Please input an integer between 1 to " + max + ".");
 				if(input > 0 && input <= 6){//only 6 opinions
 					error = false;
 				}else{
@@ -58,32 +41,6 @@ public class Driver {
 				}
 			}
 			catch(java.util.InputMismatchException e){
-				System.out.println("Your input is invalid. Please input an integer between 1 to " + max + ".");
-				sc.next();
-				error = true;
-			}
-	}
-	
-
-
-	private void runMenu(){
-		switch(input){
-		case 1:
-			
-		case 2:
-			
-		case 3:
-			
-		case 4:
-			
-		case 5:
-			
-		case 6: //Exit the program
-			running = false;
-			}
-		return;
-	}
-
 				System.out.println("Your input is invalid. Please input an integer between 1 to 6.");
 				menu();
 				sc.next();
@@ -188,6 +145,3 @@ public class Driver {
 		
 	}
 }
-	
-
-
