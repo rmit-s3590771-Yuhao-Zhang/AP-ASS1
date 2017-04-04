@@ -2,33 +2,40 @@ package com.APass1.rmit;
 import java.util.*;
 
 public class GetAthletes {
-	Random rd = new Random();
-	private static boolean SuccessfulSelected = false; //to record if game has been selected.
-	static int ParticpantNumber;
-	
-	public void randomParticpants(){
-		int IsTrue = 1;
-		ParticpantNumber =rd.nextInt(9);
-		if (ParticpantNumber < 5){
-			IsTrue = 0;
-		}
-		switch(IsTrue){
-		case 1:
-			SuccessfulSelected = true;  //game start successfully.
-			//select particpants from list
-			// not finish here
-		
-		case 0:
-			System.out.println("The game didn't start because the particapant number is below 5.");
-			break;
-		default:
-			break;
-		}
-		
+	static int ParticipantNumber;
+	static ArrayList ParticipantAthletes = new ArrayList();
+	static int i = 0;
+	static boolean gameSelected = false;
+	public void setParticipantAthletes(){
+		ParticipantAthletes.clear();
+	}
+	public ArrayList getList(){
+		return ParticipantAthletes;
 		
 	}
-	
-	public void displayParticpant(){
-		//diaplay particpant info.
+	static Random rd = new Random();
+
+	public void randomParticipants(int x, int y){ //use x and y to get right athlete ID.
+		gameSelected = true;
+		ParticipantNumber = 4 + rd.nextInt(5); 
+		for (int i = 0; i < ParticipantNumber; i++){//select participants randomly.
+			ParticipantAthletes.add((int)(y * Math.random() + x));	
+			for(int j = 0; j < i; j++){//if athlete repeated, random creat again
+				int a =(int)ParticipantAthletes.get(i);
+				int b =(int)ParticipantAthletes.get(j);
+				while (a==b){
+					i--;
+				}
+			
+			}
+		}
+		displayRandomParticipants();
+	}
+	public void displayRandomParticipants(){
+		System.out.println("Participant athletes' IDs are :");
+		for(int j = 0; j < ParticipantNumber; j++){
+			System.out.print(ParticipantAthletes.get(j)+"  ");
+			System.out.println();
+			}
 	}
 }

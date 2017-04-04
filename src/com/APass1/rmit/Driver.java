@@ -6,7 +6,10 @@ public class Driver {
 	private int input;
 	private int secondInput;
 	private boolean error;
+	private int choice,secondChoice = 0;
 	private Scanner sc = new Scanner(System.in);
+	GetAthletes GA = new GetAthletes();
+	GetReferees GR = new GetReferees();
 	
 	public void runGame(){
 		menu();
@@ -14,7 +17,7 @@ public class Driver {
 		runMenu();
 		
 	}
-	protected void menu(){
+	protected static void menu(){
 		//Create menu for game.
 		System.out.println("Ozlypic Game");
 		System.out.println("======================================");
@@ -24,13 +27,13 @@ public class Driver {
 		System.out.println("4. Display the final result of results of all games");
 		System.out.println("5. Display the point of all athletes");
 		System.out.println("6. Exit");
-		System.out.print("Please enter an option:\b\b");
+		System.out.print("Please enter an option:");
 	}
 	protected void checkMeanMenuInput(){  
 		//Check user's input if it is integer between 1 and 6.
 		
 			try{
-				int choice = sc.nextInt();
+				choice = sc.nextInt();
 				input = choice;
 				if(input > 0 && input <= 6){//only 6 opinions
 					error = false;
@@ -89,7 +92,7 @@ public class Driver {
 		//Check user's input if it is integer between 1 and 4.
 		
 			try{
-				int secondChoice = sc.nextInt();
+				secondChoice = sc.nextInt();
 				secondInput = secondChoice;
 				if(secondInput > 0 && secondInput <= 4){//only 4 opinions
 					error = false;
@@ -106,32 +109,30 @@ public class Driver {
 				error = true;
 			}
 			while(error);
+			
 	}
 	protected void selectGame(){
-		switch(secondInput){
-		case 1:
+		if (secondChoice == 1){
 			System.out.println("You've selected swimming game");
-			GetAthletes.randomParticpants();
-			GetAthletes.displayParticpant();
-			GetReferees.randomReferees();
-			GetReferees.displayReferees();
-		case 2:
+			GA.randomParticipants(0,23);
+			GR.randomReferee();
+			}
+		if (secondChoice == 2){
 			System.out.println("You've selected cycling game");
-			GetAthletes.randomParticpants();
-			GetAthletes.displayParticpant();
-			GetReferees.randomReferees();
-			GetReferees.displayReferees();
-		case 3:
-			System.out.println("You've selected cycling game");
-			GetAthletes.randomParticpants();
-			GetAthletes.displayParticpant();
-			GetReferees.randomReferees();
-			GetReferees.displayReferees();
-		case 4:
-			System.exit(0);
-			break;
+			GA.randomParticipants(7,23);
+			GR.randomReferee();
 		}
+		if (secondChoice == 3){
+			System.out.println("You've selected running game");
+			GA.randomParticipants(14,16);
+			GR.randomReferee();
+		}
+		if (secondChoice == 4){
+			System.exit(0);
+		}
+		menu();
 	}
+	
 	protected void predictGame(){
 		
 	}
@@ -144,4 +145,5 @@ public class Driver {
 	protected void getPoint(){
 		
 	}
+
 }
