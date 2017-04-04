@@ -1,9 +1,12 @@
 package com.APass1.rmit;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Driver {
+	private int type;
 	private int athleteTime;
 	private int input;
 	private int secondInput;
@@ -14,6 +17,10 @@ public class Driver {
 	GetReferees GR = new GetReferees();
 	private int winnerPrediction;
 	ArrayList<Athlete> time = new ArrayList<>();
+	private List<Athlete> athletes;
+	private List<Athlete> result;
+	private game Game;
+	
 	
 	public void runGame(){
 		menu();
@@ -142,11 +149,53 @@ public class Driver {
 		winnerPrediction = sc.nextInt();
 		runGame();
 	}
+	public int compete(){
+		int seconds = 0;
+		Random rd = new Random();
+		if (secondChoice==1){
+		seconds = rd.nextInt(101)+100;
+		}else if(secondChoice == 2){
+		seconds = rd.nextInt(301)+800;
+		}else if(secondChoice == 3){
+		seconds = rd.nextInt(11)+10;
+		}
+		return seconds;
+	}
 	protected void startGame(){
 		
-				}
-	protected void getResult(){
+		Game.summarise();
+		result = Game.getResult();
 		
+	}
+	public List<Participant> getPrintResult(){
+		List<Participant> pList = new ArrayList<Participant>();
+		pList.add(Game);
+		pList.add(result.get(0));
+		pList.add(result.get(1));
+		pList.add(result.get(2));
+		return pList;
+	}
+
+	public int getType() {
+		return type;
+	}
+	public game getGame() {
+		return Game;
+	}
+	public List<Athlete> getAthlete(){
+		return athletes;
+	}
+	public List<Athlete> getResult(){
+		return result;
+	}
+	public void setGame(game game) {
+		Game = game;
+	}
+	protected void getResults(){
+		for (int i = 0; i < result.size(); i++) {
+			System.out.println(Game.result.get(i));
+			
+		}
 	}
 	protected void getPoint(){
 		

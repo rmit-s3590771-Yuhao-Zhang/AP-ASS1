@@ -2,7 +2,8 @@ package com.APass1.rmit;
 
 import java.util.*;
 
-class Athlete extends Participant{
+public abstract class Athlete extends Participant{
+	private int points = 0;
 	public Athlete(int ID, String name, int age, String state){
 		super(ID, name, age, state);
 	}
@@ -41,8 +42,19 @@ class Athlete extends Participant{
 		Athlete.add(new Cyclist( 28,"George", 27,"NSW"));
 		Athlete.add(new Cyclist( 29,"Kevin", 19,"VIC"));
 		Athlete.add(new Cyclist( 30,"Eva", 17,"VIC"));
-		System.out.println(1);
 	}
 	
+	
+	public void addPoint(int points){
+		this.points += points;
+	}
+	
+	public int getPoint(){
+		return points;
+	}
+	
+	public void setPoints(int points){
+		this.points = points;
+	}
 	
 }

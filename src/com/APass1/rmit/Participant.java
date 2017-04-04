@@ -3,7 +3,7 @@ package com.APass1.rmit;
 import java.util.Random;
 
 public abstract class Participant {
-	static int ID;
+	private int ID;
 	private String name;
 	private int age;
 	private String state;
@@ -18,7 +18,7 @@ public abstract class Participant {
 		this.state = state;
 	}
 	
-	public static int getID() {
+	public int getID() {
 		return ID;
 	}
 
