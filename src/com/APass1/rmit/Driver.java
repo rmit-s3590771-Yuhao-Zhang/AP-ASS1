@@ -1,8 +1,10 @@
 package com.APass1.rmit;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver {
+	private int athleteTime;
 	private int input;
 	private int secondInput;
 	private boolean error;
@@ -10,6 +12,8 @@ public class Driver {
 	private Scanner sc = new Scanner(System.in);
 	GetAthletes GA = new GetAthletes();
 	GetReferees GR = new GetReferees();
+	private int winnerPrediction;
+	ArrayList<Athlete> time = new ArrayList<>();
 	
 	public void runGame(){
 		menu();
@@ -19,7 +23,7 @@ public class Driver {
 	}
 	protected static void menu(){
 		//Create menu for game.
-		System.out.println("Ozlypic Game");
+		System.out.println("Ozlympic Game");
 		System.out.println("======================================");
 		System.out.println("1. Select a game to run");
 		System.out.println("2. Predict the winner of the game");
@@ -88,7 +92,7 @@ public class Driver {
 		System.out.println("4. Exit");
 		System.out.print("Please enter an option:\b\b");
 	}
-	public void checkSecondMenuInput(){  
+	protected void checkSecondMenuInput(){  
 		//Check user's input if it is integer between 1 and 4.
 		
 			try{
@@ -130,15 +134,17 @@ public class Driver {
 		if (secondChoice == 4){
 			System.exit(0);
 		}
-		menu();
+		runGame();
 	}
 	
 	protected void predictGame(){
-		
+		System.out.println("Please predict the winner of the game you choose(please input athlete's ID)");
+		winnerPrediction = sc.nextInt();
+		runGame();
 	}
 	protected void startGame(){
 		
-	}
+				}
 	protected void getResult(){
 		
 	}
