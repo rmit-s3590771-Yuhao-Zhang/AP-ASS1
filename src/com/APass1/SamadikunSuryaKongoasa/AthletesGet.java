@@ -1,4 +1,4 @@
-package com.APass1.rmit;
+package com.APass1.SamadikunSuryaKongoasa;
 import java.util.*;
 
 public class AthletesGet {

@@ -2,7 +2,7 @@ package com.APass1.rmit2;
 
 import java.util.Scanner;
 
-import com.APass1.rmit.AthletesGet;
+import com.APass1.SamadikunSuryaKongoasa.AthletesGet;
 
 public class GamePredicted {
 	static boolean isAdd = true;

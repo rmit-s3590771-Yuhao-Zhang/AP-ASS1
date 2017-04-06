@@ -1,7 +1,7 @@
 package com.APass1.rmit2;
 
-import com.APass1.rmit.AthletesGet;
-import com.APass1.rmit.Driver;
+import com.APass1.SamadikunSuryaKongoasa.AthletesGet;
+import com.APass1.SamadikunSuryaKongoasa.Driver;
 
 public class Ozlympic {
 
