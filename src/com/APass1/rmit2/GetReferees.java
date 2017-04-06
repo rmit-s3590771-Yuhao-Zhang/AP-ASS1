@@ -1,4 +1,4 @@
-package com.APass1.rmit;
+package com.APass1.rmit2;
 
 import java.util.Random;
 

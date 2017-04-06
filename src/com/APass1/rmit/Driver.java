@@ -5,30 +5,32 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.APass1.rmit2.GamePredicted;
+
 public class Driver {
-	private int type;
-	private int athleteTime;
-	private int input;
-	private int secondInput;
-	private boolean error;
-	private int choice,secondChoice = 0;
-	private Scanner sc = new Scanner(System.in);
-	GetAthletes GA = new GetAthletes();
-	GetReferees GR = new GetReferees();
-	private int winnerPrediction;
-	ArrayList<Athlete> time = new ArrayList<>();
-	private List<Athlete> athletes;
-	private List<Athlete> result;
-	private game Game;
+	private static boolean isPredictGame = false;//record whether the game has been predicted.
+	private static boolean isStartGame = false; // record whether the game has been started.
+	private static int GAME_ID = 0;//record the game user have selected.
+	private static int ATHLETE_ID = 0;//record the athlete user have selected.
+	AthletesGet athletesGet = new AthletesGet();
+	Scanner sc = new Scanner(System.in);
+	private int choice = 0;
+	private boolean error = true;
 	
+	public int getGameID(){
+		return GAME_ID;
+	}
 	
+	GameSelected gameSelected = new GameSelected();
+	/**
+	 * display menu
+	 */
 	public void runGame(){
-		menu();
+		displaymenu();
 		checkMeanMenuInput();
 		runMenu();
-		
 	}
-	protected static void menu(){
+	protected static void displaymenu(){
 		//Create menu for game.
 		System.out.println("Ozlympic Game");
 		System.out.println("======================================");
@@ -45,18 +47,17 @@ public class Driver {
 		
 			try{
 				choice = sc.nextInt();
-				input = choice;
-				if(input > 0 && input <= 6){//only 6 opinions
+				if(choice > 0 && choice <= 6){//only 6 opinions
 					error = false;
 				}else{
 					System.out.println("Your input is invalid. Please input an integer between 1 to 6.");
-					menu();
+					displaymenu();
 					error = true;
 				}
 			}
 			catch(java.util.InputMismatchException e){
 				System.out.println("Your input is invalid. Please input an integer between 1 to 6.");
-				menu();
+				displaymenu();
 				sc.next();
 				error = true;
 			}
@@ -64,141 +65,114 @@ public class Driver {
 	
 	}
 	protected void runMenu(){
-		switch(input){
+		switch(choice){
 		case 1:
-			displaySecondMenu();
-			checkSecondMenuInput();
-			selectGame();
+			gameSelected();
+			runGame();
 			break;
 		case 2:
-			predictGame();
+			gamePredicted();
+			runGame();
 			break;
 		case 3:
-			startGame();
+			gameStart();
+			runGame();
 			break;
 		case 4:
-			getResult();
+			gameResult();
+			runGame();
 			break;
 		case 5:
-			getPoint();
+			athletePoints();
+			runGame();
 			break;
 		case 6: 
 			System.exit(0);
 			break;
-		
-				
-			
 		}
-	}
-	public void displaySecondMenu(){
-		System.out.println("Please select a game to run");
-		System.out.println("======================================");
-		System.out.println("1. Swimming");
-		System.out.println("2. Cycling");
-		System.out.println("3. Running");
-		System.out.println("4. Exit");
-		System.out.print("Please enter an option:\b\b");
-	}
-	protected void checkSecondMenuInput(){  
-		//Check user's input if it is integer between 1 and 4.
-		
-			try{
-				secondChoice = sc.nextInt();
-				secondInput = secondChoice;
-				if(secondInput > 0 && secondInput <= 4){//only 4 opinions
-					error = false;
-				}else{
-					System.out.println("Your input is invalid. Please input an integer between 1 to 4.");
-					displaySecondMenu();
-					error = true;
-				}
-			}
-			catch(java.util.InputMismatchException e){
-				System.out.println("Your input is invalid. Please input an integer between 1 to 4.");
-				displaySecondMenu();
-				sc.next();
-				error = true;
-			}
-			while(error);
-			
-	}
-	protected void selectGame(){
-		if (secondChoice == 1){
-			System.out.println("You've selected swimming game");
-			GA.randomParticipants(0,23);
-			GR.randomReferee();
-			}
-		if (secondChoice == 2){
-			System.out.println("You've selected cycling game");
-			GA.randomParticipants(7,23);
-			GR.randomReferee();
-		}
-		if (secondChoice == 3){
-			System.out.println("You've selected running game");
-			GA.randomParticipants(14,16);
-			GR.randomReferee();
-		}
-		if (secondChoice == 4){
-			System.exit(0);
-		}
-		runGame();
 	}
 	
-	protected void predictGame(){
-		System.out.println("Please predict the winner of the game you choose(please input athlete's ID)");
-		winnerPrediction = sc.nextInt();
-		runGame();
-	}
-	public int compete(){
-		int seconds = 0;
-		Random rd = new Random();
-		if (secondChoice==1){
-		seconds = rd.nextInt(101)+100;
-		}else if(secondChoice == 2){
-		seconds = rd.nextInt(301)+800;
-		}else if(secondChoice == 3){
-		seconds = rd.nextInt(11)+10;
+	protected void gameSelected(){
+		/*get ID of the game that user selected
+		 * 
+		 */
+		if(athletesGet.isSelectGame()){
+			System.out.println("You have selected a game.");
+		}else {
+			GAME_ID=gameSelected.displayAllGames();
 		}
-		return seconds;
 	}
-	protected void startGame(){
-		
-		Game.summarise();
-		result = Game.getResult();
-		
+	/*
+	 * Get id of the athlete that user predict who is winner
+	 */
+	protected void gamePredicted(){
+		if(athletesGet.isSelectGame()){
+			GamePredicted gamePredicted = new GamePredicted();
+			ATHLETE_ID = gamePredicted.displayAllAthletes(GAME_ID);
+			isPredictGame = true;
+		}else {
+			System.out.println("Firstly, you need to select a game to run.");
+			runGame();
+		}
 	}
-	public List<Participant> getPrintResult(){
-		List<Participant> pList = new ArrayList<Participant>();
-		pList.add(Game);
-		pList.add(result.get(0));
-		pList.add(result.get(1));
-		pList.add(result.get(2));
-		return pList;
+//	public int compete(){
+//		int seconds = 0;
+//		Random rd = new Random();
+//		if (secondChoice==1){
+//		seconds = rd.nextInt(101)+100;
+//		}else if(secondChoice == 2){
+//		seconds = rd.nextInt(301)+800;
+//		}else if(secondChoice == 3){
+//		seconds = rd.nextInt(11)+10;
+//		}
+//		return seconds;
+//	}
+	/*
+	 * Start a game
+	 */
+	protected void gameStart(){
+		if(athletesGet.isSelectGame()){
+			GameStart gameStart = new GameStart();
+			gameStart.start(GAME_ID, ATHLETE_ID);
+			isStartGame = true;
+			athletesGet.setIsSelectGame(false);
+			ATHLETE_ID=0;
+		}else {
+			System.out.println("Firstly, you need to select a game to run.");
+			runGame();
+		}
+	}
+	public int getAthleteID(){
+		return ATHLETE_ID;
+	}
+	/*
+	 * Display result of games
+	 */
+	protected void gameResult(){
+		if(isStartGame){
+			GameStart gameStart = new GameStart();
+			List<String> results;
+			results = gameStart.getResults();
+			for (int i = 0; i < results.size(); i++) {
+				System.out.println(results.get(i));
+			}
+		}else{
+			System.out.println("Please select a game to start firstly.");
+			runGame();
+		}
 	}
 
-	public int getType() {
-		return type;
-	}
-	public game getGame() {
-		return Game;
-	}
-	public List<Athlete> getAthlete(){
-		return athletes;
-	}
-	public List<Athlete> getResult(){
-		return result;
-	}
-	public void setGame(game game) {
-		Game = game;
-	}
-	protected void getResults(){
-		for (int i = 0; i < result.size(); i++) {
-			System.out.println(Game.result.get(i));
-			
+	protected void athletePoints(){
+		System.out.println("Athlete Point\n");
+		Athlete athletes[] = AthletesInit.getAthletes();
+		System.out.println("ID\tname\tage\tstate\tpoints\t");
+		for(int i = 0 ; i < 31; i++){
+			System.out.println(athletes[i].getAthleteID()+"\t"+athletes[i].getName()+"\t"+
+                    athletes[i].getAge()+"\t"+athletes[i].getState()+"\t"+athletes[i].getPoint());
+	        
 		}
-	}
-	protected void getPoint(){
-		
+		runGame();
+			
 	}
 
 }

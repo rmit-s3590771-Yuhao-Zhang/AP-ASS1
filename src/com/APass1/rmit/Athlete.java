@@ -1,60 +1,73 @@
 package com.APass1.rmit;
 
-import java.util.*;
 
-public abstract class Athlete extends Participant{
+public  class Athlete{
+	
+	private String name;
+	private int age;
+	private String state;
 	private int points = 0;
-	public Athlete(int ID, String name, int age, String state){
-		super(ID, name, age, state);
-	}
-	static ArrayList<Athlete> Athlete = new ArrayList<Athlete>();
+	private int athleteID;
+	private int time = 0;
 	
+
 	
-	public static void AddAthlete(){//insert athletes
-		Athlete.add(new Swimmer( 0, "Matt", 17, "QL"));
-		Athlete.add(new Swimmer( 1, "Ivy", 18, "TS"));
-		Athlete.add(new Swimmer( 2, "Tony", 22, "VIC"));
-		Athlete.add(new Swimmer( 3, "Jack", 21, "SA"));
-		Athlete.add(new Swimmer( 4, "Mark",  24, "NSW"));
-		Athlete.add(new Swimmer( 5, "James", 29, "VIC"));
-		Athlete.add(new Swimmer( 6, "Lily",  22, "VIC"));
-		Athlete.add(new Sprinter( 7, "Rachel",  22, "QL"));
-		Athlete.add(new Sprinter( 8, "Thomas", 18, "TS"));
-		Athlete.add(new Sprinter( 9, "Daniel", 25,"VIC"));
-		Athlete.add(new Sprinter( 10, "Paul", 26,"SA"));
-		Athlete.add(new Sprinter( 11, "Amy", 18, "NSW"));
-		Athlete.add(new Sprinter( 12, "Sarah", 25,"VIC"));
-		Athlete.add(new Sprinter( 13, "Jennifer", 26,"VIC"));
-		Athlete.add(new SuperAthlete( 14, "Linda", 23,"QL"));
-		Athlete.add(new SuperAthlete( 15, "Candy", 24,"VIC"));
-		Athlete.add(new SuperAthlete( 16, "Eric", 18,"NSW"));
-		Athlete.add(new SuperAthlete( 17, "Jason", 20,"TS"));
-		Athlete.add(new SuperAthlete( 18, "William", 22,"NSW"));
-		Athlete.add(new SuperAthlete( 19, "Angela", 24,"SA"));
-		Athlete.add(new SuperAthlete( 20, "Jenny", 19,"VIC"));
-		Athlete.add(new SuperAthlete( 21, "Jessica", 20,"SA"));
-		Athlete.add(new SuperAthlete( 22, "Chris", 27,"VIC"));
-		Athlete.add(new SuperAthlete( 23, "Emily", 26,"VIC"));
-		Athlete.add(new Cyclist( 24,"Sunny", 21,"QL"));
-		Athlete.add(new Cyclist( 25,"David", 17,"NSW"));
-		Athlete.add(new Cyclist( 26,"Jessica", 19,"TS"));
-		Athlete.add(new Cyclist( 27,"Lisa", 24,"VIC"));
-		Athlete.add(new Cyclist( 28,"George", 27,"NSW"));
-		Athlete.add(new Cyclist( 29,"Kevin", 19,"VIC"));
-		Athlete.add(new Cyclist( 30,"Eva", 17,"VIC"));
+	public Athlete(int athleteID, String name, int age, String state){
+		this.athleteID=athleteID;
+		this.name=name;
+		this.age=age;
+		this.state=state;
 	}
 	
-	
-	public void addPoint(int points){
-		this.points += points;
+	public void compete(int ID){
+		switch(ID){
+		case 0:
+			time = (int)(101*Math.random()+100);
+			break;
+		case 1:
+			time = (int)(10*Math.random()+11);
+			break;
+		case 2:
+			time = (int)(301*Math.random()+500);
+			break;
+		}
 	}
-	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public int getAthleteID() {
+		return athleteID;
+	}
+	public void setAthleteID(int athleteID) {
+		this.athleteID = athleteID;
+	}
+	public int getTime() {
+		return time;
+	}
+	public void setTime(int time) {
+		this.time = time;
+	}
 	public int getPoint(){
 		return points;
 	}
 	
 	public void setPoints(int points){
-		this.points = points;
+		this.points += points;
 	}
 	
 }
