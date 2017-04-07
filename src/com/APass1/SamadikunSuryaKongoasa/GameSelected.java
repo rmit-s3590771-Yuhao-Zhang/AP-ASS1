@@ -3,7 +3,7 @@ package com.APass1.SamadikunSuryaKongoasa;
 import java.util.Random;
 import java.util.Scanner;
 
-import com.APass1.rmit2.GetReferees;
+import com.APass1.YuhaoZhang.GetReferees;
 
 public class GameSelected {
 	AthletesGet athletesGet = new AthletesGet();

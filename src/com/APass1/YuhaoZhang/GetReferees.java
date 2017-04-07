@@ -1,4 +1,4 @@
-package com.APass1.rmit2;
+package com.APass1.YuhaoZhang;
 
 import java.util.Random;
 
